@@ -2,6 +2,7 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
+const axios = require("axios");
 const { DB_USER, DB_PASSWORD, DB_HOST, apikey } = process.env;
 
 const sequelize = new Sequelize(
@@ -41,7 +42,22 @@ const { Videogame, Genre } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
+Videogame.belongsToMany(Genre, { through: "game_genre" });
+Genre.belongsToMany(Videogame, { through: "game_genre" });
 
+const popgenres = async () => {
+  const apigenres = await axios.get(
+    `https://api.rawg.io/api/genres?key=${apikey}`
+  );
+  const genres = apigenres.data.results.map((p) => p.name);
+  // Add all genres to the Database
+  genres.forEach((p) => {
+    Genre.findOrCreate({
+      where: { name: p },
+    });
+  });
+};
+popgenres();
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,
