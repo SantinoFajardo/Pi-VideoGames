@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      Description: {
+      description: {
         type: DataTypes.TEXT,
         allowNull: false,
       },
@@ -26,7 +26,7 @@ module.exports = (sequelize) => {
       rating: {
         type: DataTypes.DECIMAL,
       },
-      plataforms: {
+      platforms: {
         type: DataTypes.STRING,
         allowNull: false,
       },

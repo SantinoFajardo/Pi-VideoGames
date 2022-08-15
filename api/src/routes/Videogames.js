@@ -1,5 +1,4 @@
 var express = require("express");
-const { apikey, Videogame, Genre, conn } = require("../db");
 const controllers = require("./Controllers");
 var router = express.Router();
 
@@ -29,17 +28,38 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  let id = req.params.id;
+  const { id } = req.params;
   try {
-    let idkey = parseInt(id);
-    if (idkey) {
-      let gameById = await controllers.getSpecificGame(idkey);
-      if (gameById) {
-        return res.status(200).send(gameById);
-      }
+    let response = await controllers.getSpecificGame(id);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(400).send("No se pudo encontrar el juego");
+  }
+});
+
+router.post("/", async (req, res) => {
+  let { name, description, released, rating, platforms, image, genre } =
+    req.body;
+  try {
+    let response = await controllers.postGame(
+      name,
+      description,
+      released,
+      rating,
+      platforms,
+      image,
+      genre
+    );
+    if (name && description && image && platforms) {
+      return res.status(200).send(response);
+    } else {
+      return res.status(400).send(response);
     }
   } catch (error) {
+    console.log(error);
     res.status(400).send(error);
   }
 });
+
+router.delete;
 module.exports = router;
