@@ -3,8 +3,17 @@ const axios = require("axios");
 
 const getApiInfo = async () => {
   const URL = `https://api.rawg.io/api/games?key=${apikey}`;
-  const ApiURL = await axios.get(URL);
-  const ApiInfo = await ApiURL.data.results.map((el) => {
+  const promise1 = axios.get(URL + "&page=1");
+  const promise2 = axios.get(URL + "&page=2");
+  const promise3 = axios.get(URL + "&page=3");
+
+  await Promise.all([promise1, promise2, promise3]).then((values) => {
+    apiInfo = values[0].data.results
+      .concat(values[1].data.results)
+      .concat(values[2].data.results);
+  });
+
+  const apiGames = await apiInfo.map((el) => {
     return {
       id: el.id,
       name: el.name,
@@ -15,7 +24,7 @@ const getApiInfo = async () => {
       genres: el.genres.map((g) => g.name),
     };
   });
-  return ApiInfo;
+  return apiGames;
 };
 
 const getDbInfo = async () => {
