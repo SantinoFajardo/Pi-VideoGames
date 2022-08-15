@@ -119,6 +119,19 @@ const postGame = async (
   }
 };
 
+const deleteGame = async (name) => {
+  if (!name) {
+    throw "Es necesario el nombre para borrar el juego";
+  } else {
+    const deletedGame = await Videogame.destroy({
+      where: {
+        name: name,
+      },
+    });
+    return "Juego borrado con exito";
+  }
+};
+
 const getGenres = async () => {
   return await Genre.findAll({
     attributes: ["name"],
@@ -127,7 +140,7 @@ const getGenres = async () => {
 
 const getPlatforms = async () => {
   let apiInfo = await axios.get(
-    `https://api.rawg.io/api/platforms/lists/parents?key=${apikey}`
+    `https://api.rawg.io/api/platforms?key=${apikey}`
   );
   var platformsApi = apiInfo.data.results.map((p) => p.name);
   return platformsApi;
@@ -141,4 +154,5 @@ module.exports = {
   postGame,
   getGenres,
   getPlatforms,
+  deleteGame,
 };

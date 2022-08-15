@@ -1,3 +1,4 @@
+const { response } = require("express");
 var express = require("express");
 const controllers = require("./Controllers");
 var router = express.Router();
@@ -57,6 +58,20 @@ router.post("/", async (req, res) => {
     }
   } catch (error) {
     console.log(error);
+    res.status(400).send(error);
+  }
+});
+
+router.delete("/delete/:name", async (req, res) => {
+  let { name } = req.params;
+  try {
+    if (name) {
+      let response = await controllers.deleteGame(name);
+      res.status(200).send(response);
+    } else {
+      res.status(400).send(response);
+    }
+  } catch (error) {
     res.status(400).send(error);
   }
 });
