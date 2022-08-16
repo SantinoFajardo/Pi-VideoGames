@@ -5,7 +5,7 @@ export function getVideogames() {
     var call = await axios.get("http://localhost:3001/videogames");
     return dispatch({
       type: "GET_VIDEOGAME",
-      paylaod: call.data,
+      payload: call.data,
     });
   };
 }
@@ -78,25 +78,30 @@ export function postVideoGame(payload) {
   };
 }
 
-export function sortVideogames(payload) {
+export function filterGamesByGenre(payload) {
   return {
-    type: "SORT_VIDEOGAME",
+    type: "FILTER_BY_GENRE",
     payload,
   };
 }
 
-export function genreFilter(payload) {
+export function filterGamesByCreated(payload) {
   return {
-    type: "GENRES_FILTER",
+    type: "FILTER_BY_CREATED",
     payload,
   };
 }
 
-export function deletegame(payload) {
-  return async function () {
-    var call = await axios.delete(
-      `http://localhost:3001/videogames/delete/:${payload}`
-    );
-    return call;
+export function sortByName(payload) {
+  return {
+    type: "SORT_BY_NAME",
+    payload,
+  };
+}
+
+export function sortByRating(payload) {
+  return {
+    type: "SORT_BY_RATING",
+    payload,
   };
 }

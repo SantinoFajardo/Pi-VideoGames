@@ -2,6 +2,7 @@ import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LandingPage from "./components/landingpage/landing";
 import home from "./components/homePage/home";
+import SearchBar from "./components/searchBar/searchBar";
 
 function App() {
   return (

@@ -6,12 +6,18 @@ const getApiInfo = async () => {
   const promise1 = axios.get(URL + "&page=1");
   const promise2 = axios.get(URL + "&page=2");
   const promise3 = axios.get(URL + "&page=3");
+  const promise4 = axios.get(URL + "&page=4");
+  const promise5 = axios.get(URL + "&page=5");
 
-  await Promise.all([promise1, promise2, promise3]).then((values) => {
-    apiInfo = values[0].data.results
-      .concat(values[1].data.results)
-      .concat(values[2].data.results);
-  });
+  await Promise.all([promise1, promise2, promise3, promise4, promise5]).then(
+    (values) => {
+      apiInfo = values[0].data.results
+        .concat(values[1].data.results)
+        .concat(values[2].data.results)
+        .concat(values[3].data.results)
+        .concat(values[4].data.results);
+    }
+  );
 
   const apiGames = await apiInfo.map((el) => {
     return {

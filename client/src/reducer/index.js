@@ -1,7 +1,7 @@
 const initialState = {
   videoGames: [],
+  videoGamesFilter: [],
   videoGameDetail: {},
-  videoGameFilter: [],
   genres: [],
   platforms: [],
 };
@@ -12,6 +12,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         videoGames: action.payload,
+        videoGamesFilter: action.payload,
       };
     case "GET_VIDEOGAME_BY_NAME":
       return {
@@ -24,11 +25,9 @@ export default function rootReducer(state = initialState, action) {
         videoGameDetail: action.payload,
       };
     case "GET_GENRES":
-      let genre = action.payload;
-      genre.unshift("All");
       return {
         ...state,
-        genres: genre,
+        genres: action.payload,
       };
     case "GET_PLATFORMS":
       return {
@@ -39,28 +38,60 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
-    case "SORT_VIDEOGAME":
-      let sortByRating = state.videoGames.sort((a, b) => a.rating - b.rating);
-      let sortByAlfabeticNameAsc = state.videoGames.sort(
-        (a, b) => a.name - b.name
-      );
-      let sortByAlfabeticNameDes = state.videoGames.sort(
-        (a, b) => a.name + b.name
-      );
-      if (action.payload === "rating") {
-        return {
-          ...state,
-          videoGames: sortByRating,
-        };
-      } else {
-        return {
-          ...state,
-          videoGames:
-            action.payload === "asc"
-              ? sortByAlfabeticNameAsc
-              : sortByAlfabeticNameDes,
-        };
-      }
+    case "FILTER_BY_GENRE":
+      const allVideoGames = state.videoGamesFilter;
+      const genreFilter =
+        action.payload === "All"
+          ? allVideoGames
+          : allVideoGames.filter((Vg) => Vg.genres.includes(action.payload));
+      return {
+        ...state,
+        videoGames: genreFilter,
+      };
+    case "FILTER_BY_CREATED":
+      const createdFilter =
+        action.payload === "API"
+          ? state.videoGamesFilter.filter((a) => !a.createInDb)
+          : state.videoGamesFilter.filter((a) => a.createInDb === true);
+      return {
+        ...state,
+        videoGames:
+          action.payload === "All" ? state.videoGamesFilter : createdFilter,
+      };
+    case "SORT_BY_NAME":
+      let sortByName =
+        action.payload === "asc"
+          ? state.videoGames.sort(function (a, b) {
+              if (a.name > b.name) {
+                return 1;
+              }
+              if (b.name > a.name) {
+                return -1;
+              }
+              return 0;
+            })
+          : state.videoGames.sort(function (a, b) {
+              if (a.name > b.name) {
+                return -1;
+              }
+              if (b.name > a.name) {
+                return 1;
+              }
+              return 0;
+            });
+      return {
+        ...state,
+        videoGames: sortByName,
+      };
+    case "SORT_BY_RATING":
+      let sortByRating =
+        action.payload === "bestr"
+          ? state.videoGames.sort((a, b) => a.rating + b.rating)
+          : state.videoGames.sort((a, b) => a.rating - b.rating);
+      return {
+        ...state,
+        videoGames: sortByRating,
+      };
     default:
       return { ...state };
   }
