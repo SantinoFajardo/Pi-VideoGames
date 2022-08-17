@@ -86,8 +86,8 @@ export default function rootReducer(state = initialState, action) {
     case "SORT_BY_RATING":
       let sortByRating =
         action.payload === "bestr"
-          ? state.videoGames.sort((a, b) => a.rating + b.rating)
-          : state.videoGames.sort((a, b) => a.rating - b.rating);
+          ? state.videoGames.sort((a, b) => a.rating - b.rating)
+          : state.videoGames.sort((a, b) => b.rating - a.rating);
       return {
         ...state,
         videoGames: sortByRating,

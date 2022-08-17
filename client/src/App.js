@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LandingPage from "./components/landingpage/landing";
 import home from "./components/homePage/home";
-import SearchBar from "./components/searchBar/searchBar";
+import Create from "./components/addVideogame/addVideogame";
 
 function App() {
   return (
@@ -11,6 +11,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/home" component={home} />
+          <Route exact path="/videogames" component={Create} />
         </Switch>
       </div>
     </BrowserRouter>

@@ -87,15 +87,16 @@ export default function Home() {
         <Link to="/">
           <button>Back to landing page</button>
         </Link>
-        <div></div>
-        <select name="" id="" onChange={(e) => handleFilterGenre(e)}>
-          <option value="All">All</option>
-          {allGenres.map((el) => (
-            <option value={el.name} key={el.name}>
-              {el.name}
-            </option>
-          ))}
-        </select>
+        <div>
+          <select name="" id="" onChange={(e) => handleFilterGenre(e)}>
+            <option value="All">All</option>
+            {allGenres.map((el) => (
+              <option value={el.name} key={el.name}>
+                {el.name}
+              </option>
+            ))}
+          </select>
+        </div>
         <div>
           <select name="" id="" onChange={(e) => handleFilterCreated(e)}>
             <option value="All">All Videogames</option>
@@ -111,8 +112,8 @@ export default function Home() {
         </div>
         <div>
           <select name="" id="" onChange={(e) => handleSortByRating(e)}>
-            <option value="bestr">Bests ratings</option>
-            <option value="worstr">Worst ratings</option>
+            <option value="bestr">Worst ratings</option>
+            <option value="worstr">Best ratings</option>
           </select>
         </div>
       </div>
@@ -122,7 +123,7 @@ export default function Home() {
             return (
               <div>
                 <Card
-                  key={vg.id}
+                  key={vg.name}
                   name={vg.name}
                   genre={vg.genres + ""}
                   rating={vg.rating}

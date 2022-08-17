@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { getVideogamesByName } from "../../Actions";
 
 export default function SearchBar() {
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
 
   function handleInputChange(e) {
