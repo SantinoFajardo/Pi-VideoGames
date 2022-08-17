@@ -28,7 +28,7 @@ export default function Create() {
   useEffect(() => {
     dispatch(getGenres());
     dispatch(getPlatforms());
-  }, []);
+  }, [dispatch]);
 
   const [input, setInput] = useState({
     name: "",

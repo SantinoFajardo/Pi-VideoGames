@@ -15,11 +15,7 @@ export default function Paging({ gamesPerPage, allGames, paging }) {
           {pageNumbers &&
             pageNumbers.map((n) => (
               <li key={n}>
-                <a key={n} onClick={(n) => paging(n)}>
-                  {" "}
-                  {n}{" "}
-                </a>
-                ;
+                <button onClick={() => paging(n)}>{n}</button>
               </li>
             ))}
         </ul>

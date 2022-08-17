@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
+import filterGameByPlatform, {
   getGenres,
   getVideogames,
   filterGamesByGenre,
   filterGamesByCreated,
   sortByName,
   sortByRating,
+  getPlatforms,
 } from "../../Actions";
 import { Link } from "react-router-dom";
 import Card from "../VG Card/videoGameCard";
@@ -25,17 +26,19 @@ export default function Home() {
   const dispatch = useDispatch();
   const allVideoGames = useSelector((state) => state.videoGames);
   const allGenres = useSelector((state) => state.genres);
+  const allPlatforms = useSelector((state) => state.platforms);
 
   // USEEFFECT:
   useEffect(() => {
     dispatch(getVideogames());
     dispatch(getGenres());
+    dispatch(getPlatforms());
   }, [dispatch]);
 
   // CONSTANTES/VARIABLES:
-  const indexOfLastGame = currentPage * gamesPerPage; //ej: en la pagina 1 el indice del ultimo game es 1 * 15 = 15
-  const indexOfFirstGame = indexOfLastGame - gamesPerPage; //ej: en la pagina 1 el indice del primer game es 15 - 15 = 0
-  const currentGames = allVideoGames.slice(indexOfFirstGame, indexOfLastGame); // los juegos de la pagina actual
+  const indexOfLastGame = currentPage * gamesPerPage;
+  const indexOfFirstGame = indexOfLastGame - gamesPerPage;
+  const currentGames = allVideoGames.slice(indexOfFirstGame, indexOfLastGame);
 
   // FUNCIONES:
   let handleClick = (e) => {
@@ -138,6 +141,7 @@ export default function Home() {
           gamesPerPage={gamesPerPage}
           allGames={allVideoGames.length}
           paging={paging}
+          currentPage={currentPage}
         />
       </div>
     </div>

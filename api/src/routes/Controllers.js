@@ -60,6 +60,7 @@ const getSpecificGame = async (id) => {
     );
     if (result.data.id) {
       const gameFromApi = {
+        id: result.data.id,
         name: result.data.name,
         platforms: result.data.platforms.map((p) => p.platform.name).toString(),
         released: result.data.released,
