@@ -39,7 +39,7 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  let { name, description, released, rating, platforms, image, genre } =
+  let { name, description, released, rating, platforms, image, genres } =
     req.body;
   try {
     let response = await controllers.postGame(
@@ -49,9 +49,9 @@ router.post("/", async (req, res) => {
       rating,
       platforms,
       image,
-      genre
+      genres
     );
-    if (name && description && image && platforms) {
+    if (name && description && image && platforms && genres) {
       return res.status(200).send(response);
     } else {
       return res.status(400).send(response);

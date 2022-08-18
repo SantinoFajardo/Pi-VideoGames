@@ -77,50 +77,60 @@ export default function Home() {
       <div className={s.container_div}>
         <h1 className={s.title}>PI-SANTINO FAJARDO</h1>
         <SearchBar />
-        <Link to="/videogames">
-          <button>Put a videogame</button>
-        </Link>
-        <button
-          onClick={(e) => {
-            handleClick(e);
-          }}
-        >
-          Refresh page
-        </button>
-        <Link to="/">
-          <button>Back to landing page</button>
-        </Link>
-        <div>
-          <select name="" id="" onChange={(e) => handleFilterGenre(e)}>
-            <option value="All">All</option>
-            {allGenres.map((el) => (
-              <option value={el.name} key={el.name}>
-                {el.name}
-              </option>
-            ))}
-          </select>
+        <div className={s.div_buttons}>
+          <Link to="/videogames">
+            <button>Put a videogame</button>
+          </Link>
+          <button
+            onClick={(e) => {
+              handleClick(e);
+            }}
+          >
+            Refresh page
+          </button>
+          <Link to="/">
+            <button>Back to landing page</button>
+          </Link>
         </div>
-        <div>
-          <select name="" id="" onChange={(e) => handleFilterCreated(e)}>
-            <option value="All">All Videogames</option>
-            <option value="DB">Only data base games</option>
-            <option value="API">Only api games</option>
-          </select>
-        </div>
-        <div>
-          <select name="" id="" onChange={(e) => handleSortByName(e)}>
-            <option value="asc">A-Z</option>
-            <option value="des">Z-A</option>
-          </select>
-        </div>
-        <div>
-          <select name="" id="" onChange={(e) => handleSortByRating(e)}>
-            <option value="bestr">Worst ratings</option>
-            <option value="worstr">Best ratings</option>
-          </select>
+        <div className={s.div_filters_sorts}>
+          <div>
+            <div className={s.div_filters}>
+              <h2>Filter by:</h2>
+              <select name="" id="" onChange={(e) => handleFilterGenre(e)}>
+                <option value="All">ALL GENRES</option>
+                {allGenres.map((el) => (
+                  <option value={el.name} key={el.name}>
+                    {el.name.toUpperCase()}
+                  </option>
+                ))}
+              </select>
+              <div>
+                <select name="" id="" onChange={(e) => handleFilterCreated(e)}>
+                  <option value="All">ALL VIDEOGAMES</option>
+                  <option value="DB">ONLY DATA BASE GAMES</option>
+                  <option value="API">ONLY API GAMES</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div className={s.div_sorts}>
+            <h2>Order by:</h2>
+            <div>
+              <select name="" id="" onChange={(e) => handleSortByName(e)}>
+                <option value="asc">A-Z</option>
+                <option value="des">Z-A</option>
+              </select>
+            </div>
+            <div>
+              <select name="" id="" onChange={(e) => handleSortByRating(e)}>
+                <option value="bestr">WORST RATINGS</option>
+                <option value="worstr">BEST RATINGS</option>
+              </select>
+            </div>
+          </div>
         </div>
       </div>
-      <div>
+      <div className={s.currenGames}>
         {currentGames &&
           currentGames.map((vg) => {
             return (
@@ -132,6 +142,9 @@ export default function Home() {
                   rating={vg.rating}
                   image={vg.image}
                 />
+                <Link to={"/videogames/" + vg.id}>
+                  <button>More</button>
+                </Link>
               </div>
             );
           })}

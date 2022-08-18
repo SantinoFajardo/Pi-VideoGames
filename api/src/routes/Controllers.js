@@ -91,7 +91,7 @@ const getSpecificGame = async (id) => {
     }
     const objdbgame = {
       name: gameFromDataBase.name,
-      platforms: gameFromDataBase.platform,
+      platforms: gameFromDataBase.platforms,
       released: gameFromDataBase.released,
       image: gameFromDataBase.image,
       description: gameFromDataBase.description,
@@ -110,7 +110,7 @@ const postGame = async (
   rating,
   platforms,
   image,
-  genre
+  genres
 ) => {
   if (!name || !description || !platforms || !image) {
     throw "Faltan algunos elementos obligatorios para poder postear un video juego";
@@ -123,10 +123,11 @@ const postGame = async (
       rating,
       platforms,
       image,
+      genres,
     });
     const vgGenre = await Genre.findAll({
       where: {
-        name: genre,
+        name: genres,
       },
     });
 

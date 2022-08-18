@@ -1,0 +1,61 @@
+.container_div {
+  background: url(https://img.freepik.com/vector-premium/fondo-lluvia-pixeles-violeta-abstracto_23-2148362568.jpg?w=2000)
+    center;
+  padding: 20px;
+  position: relative;
+}
+
+.title {
+  color: white;
+  font-size: 40px;
+  text-align: left;
+  width: 200px;
+  position: absolute;
+  margin-top: 20px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.div_filters_sorts {
+  margin-left: 1100px;
+  margin-top: -40px;
+}
+
+.div_filters {
+  color: white;
+}
+
+.div_filters_sorts select {
+  border-radius: 30px;
+  background: blueviolet;
+  margin: 5px 0;
+  height: 25px;
+  padding: 2px;
+}
+
+.div_sorts {
+  color: white;
+  margin-top: 20px;
+}
+
+.div_buttons {
+  /* margin-top: 60px; */
+  margin-right: 100px;
+  margin-bottom: -20px;
+}
+
+.div_buttons button {
+  height: 40px;
+  margin-left: 50px;
+  padding-bottom: 5px;
+  border-radius: 30px;
+  margin-bottom: -30px;
+  background-color: blueviolet;
+  color: white;
+  font-size: 18px;
+  transition: all 0.5s;
+}
+
+.div_buttons button:hover {
+  background-color: #a832e2;
+  cursor: pointer;
+}

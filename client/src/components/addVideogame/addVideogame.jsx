@@ -4,32 +4,39 @@ import { postVideoGame } from "../../Actions";
 import { getGenres } from "../../Actions";
 import { getPlatforms } from "../../Actions";
 import { useDispatch, useSelector } from "react-redux";
+import s from "./addVideogame.module.css";
 
 function validate(input) {
   let errors = {};
   if (!input.name) errors.name = "The name is required for created a videogame";
-  if (!input.rating || input.rating > 5 || input.rating < 0) {
+  else if (!input.description)
+    errors.description = "The description is requiere";
+  else if (!input.rating || input.rating > 5 || input.rating < 0) {
     errors.rating = "Rating must be a number between 0-5";
-  }
-  if (!input.platform.length) {
-    errors.input = "The game requires at least one platform";
-  }
-  if (!input.genres.length) {
-    errors.input = "The game requires at least one genre";
+  } else if (!input.platforms.length) {
+    errors.platforms = "The game requires at least one platform";
+  } else if (!input.image || input.image.length > 255) {
+    errors.image = "The url of image is require and its length less than 255";
+  } else if (!input.genres.length) {
+    errors.genres = "The game requires at least one genre";
   }
   return errors;
 }
 export default function Create() {
+  // DISPATCHS/STATES/HISTORY
   const dispatch = useDispatch();
   const history = useHistory();
   const genres = useSelector((state) => state.genres);
   const platforms = useSelector((state) => state.platforms);
 
+  // USEEFFECT
   useEffect(() => {
     dispatch(getGenres());
     dispatch(getPlatforms());
   }, [dispatch]);
 
+  // LOCAL STATES
+  // STATE INPUT
   const [input, setInput] = useState({
     name: "",
     description: "",
@@ -39,12 +46,22 @@ export default function Create() {
     image: "",
     genres: [],
   });
+  // STATE ERRORS
+  const [errors, setErrors] = useState({});
 
+  // FUNCTIONS
   const handleChange = (e) => {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
+    setErrors(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
+    console.log(input);
   };
 
   const handleCheckPlatform = (e) => {
@@ -54,6 +71,7 @@ export default function Create() {
         platforms: [...input.platforms, e.target.value],
       });
     }
+    console.log(input);
   };
 
   const handleCheckGenre = (e) => {
@@ -63,9 +81,11 @@ export default function Create() {
         genres: [...input.genres, e.target.value],
       });
     }
+    console.log(input);
   };
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     dispatch(postVideoGame(input));
     alert(`The game ${input.name} has been created successfully `);
     setInput({
@@ -79,8 +99,6 @@ export default function Create() {
     });
     history.push("/home");
   };
-
-  let platformssort = platforms.sort((a, b) => a - b);
 
   return (
     <div>
@@ -99,6 +117,7 @@ export default function Create() {
             name="name"
             onChange={(e) => handleChange(e)}
           />
+          {errors.name && <p className={s.error}>{errors.name}</p>}
         </div>
         <div>
           <label>Description</label>
@@ -110,6 +129,9 @@ export default function Create() {
             value={input.description}
             onChange={(e) => handleChange(e)}
           ></textarea>
+          {errors.description && (
+            <p className={s.error}>{errors.description}</p>
+          )}
         </div>
         <div>
           <label>Released</label>
@@ -123,15 +145,16 @@ export default function Create() {
         <div>
           <label>Rating</label>
           <input
-            type="text"
+            type="number"
             name="rating"
             value={input.rating}
             onChange={(e) => handleChange(e)}
           />
+          {errors.rating && <p className={s.error}>{errors.rating}</p>}
         </div>
         <div>
           <label>Platforms: </label>
-          {platformssort.map((platform) => {
+          {platforms.map((platform) => {
             return (
               <div key={platform}>
                 <input
@@ -153,6 +176,7 @@ export default function Create() {
             value={input.image}
             onChange={(e) => handleChange(e)}
           />
+          {errors.image && <p className={s.error}>{errors.image}</p>}
         </div>
         <div>
           <label>Genres: </label>
