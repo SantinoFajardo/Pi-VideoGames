@@ -1,0 +1,12 @@
+.container {
+  height: 300px;
+  width: 300px;
+  text-align: center;
+  margin: 20px 0;
+  padding: 10px;
+}
+
+.currentGames_button {
+  display: block;
+  margin: 10px auto;
+}

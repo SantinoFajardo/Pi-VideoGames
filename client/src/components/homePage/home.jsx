@@ -136,15 +136,15 @@ export default function Home() {
             return (
               <div>
                 <Card
+                  genreBD={vg.createInDb ? vg.genres : []}
+                  genreAPI={!vg.createInDb ? vg.genres : []}
                   key={vg.name}
                   name={vg.name}
                   genre={vg.genres + ""}
                   rating={vg.rating}
                   image={vg.image}
+                  id={vg.id}
                 />
-                <Link to={"/videogames/" + vg.id}>
-                  <button>More</button>
-                </Link>
               </div>
             );
           })}
