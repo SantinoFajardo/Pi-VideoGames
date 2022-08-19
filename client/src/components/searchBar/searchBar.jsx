@@ -32,7 +32,7 @@ export default function SearchBar() {
         type="input"
         onClick={(e) => handleSubmit(e)}
       >
-        Search
+        SEARCH
       </button>
     </div>
   );

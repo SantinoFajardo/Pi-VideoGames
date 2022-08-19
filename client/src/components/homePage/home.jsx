@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Suspense, lazy } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import filterGameByPlatform, {
@@ -11,10 +11,12 @@ import filterGameByPlatform, {
   getPlatforms,
 } from "../../Actions";
 import { Link } from "react-router-dom";
-import Card from "../VG Card/videoGameCard";
+// import Card from "../VG Card/videoGameCard";
 import Paging from "../Paging/paging";
 import s from "./homePage.module.css";
 import SearchBar from "../searchBar/searchBar";
+import Loading from "../Loading/loading";
+const Card = lazy(() => import("../VG Card/videoGameCard"));
 
 export default function Home() {
   //ESTADOS LOCALES:
@@ -79,17 +81,17 @@ export default function Home() {
         <SearchBar />
         <div className={s.div_buttons}>
           <Link to="/videogames">
-            <button>Put a videogame</button>
+            <button>CREATE</button>
           </Link>
           <button
             onClick={(e) => {
               handleClick(e);
             }}
           >
-            Refresh page
+            REFRESH
           </button>
           <Link to="/">
-            <button>Back to landing page</button>
+            <button>BACK</button>
           </Link>
         </div>
         <div className={s.div_filters_sorts}>
@@ -135,16 +137,18 @@ export default function Home() {
           currentGames.map((vg) => {
             return (
               <div>
-                <Card
-                  genreBD={vg.createInDb ? vg.genres : []}
-                  genreAPI={!vg.createInDb ? vg.genres : []}
-                  key={vg.name}
-                  name={vg.name}
-                  genre={vg.genres + ""}
-                  rating={vg.rating}
-                  image={vg.image}
-                  id={vg.id}
-                />
+                <Suspense fallback={<Loading />}>
+                  <Card
+                    genreBD={vg.createInDb ? vg.genres : []}
+                    genreAPI={!vg.createInDb ? vg.genres : []}
+                    key={vg.name}
+                    name={vg.name}
+                    genre={vg.genres + ""}
+                    rating={vg.rating}
+                    image={vg.image}
+                    id={vg.id}
+                  />
+                </Suspense>
               </div>
             );
           })}

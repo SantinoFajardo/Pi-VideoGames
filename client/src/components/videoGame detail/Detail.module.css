@@ -1,0 +1,73 @@
+body {
+  background: linear-gradient(rgba(5, 7, 12, 0.75), rgba(5, 7, 12, 0.75)),
+    url(https://cdn.pixabay.com/photo/2019/07/06/20/31/joystick-4321216__340.jpg);
+  background-size: 100%;
+}
+
+.conteiner {
+  padding: 20px;
+}
+
+.name {
+  text-align: center;
+  font-size: 50px;
+  color: wheat;
+}
+
+.buttonDetail {
+  display: block;
+  margin: auto;
+  margin-top: 25px;
+  height: 30px;
+  width: 100px;
+  border-radius: 30px;
+  border: none;
+  background-color: #877328;
+  transition: all 1s;
+  color: white;
+}
+
+button:hover {
+  background-color: #b59931;
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.conteinerDH {
+  height: 500px;
+  margin: auto;
+  margin-top: 30px;
+  padding: 20px;
+  border: 10px double #877328;
+}
+
+.image {
+  margin-right: 20px;
+  float: left;
+  width: 500px;
+  height: 500px;
+}
+
+.containerDetail {
+  color: white;
+}
+
+.genre {
+  margin-bottom: 20px;
+}
+
+.platforms {
+  margin-bottom: 20px;
+}
+
+.released {
+  margin-bottom: 20px;
+}
+
+.rating {
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 18px;
+}

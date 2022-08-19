@@ -1,1 +1,26 @@
+.conteiner {
+  margin-bottom: 20px;
+}
 
+.input {
+  height: 20px;
+  width: 300px;
+  border-radius: 30px;
+  padding: 5px;
+}
+
+.button {
+  height: 30px;
+  width: 90px;
+  border-radius: 30px;
+  border: none;
+  margin-left: 5px;
+  background-color: #877328;
+  transition: all 1s;
+}
+
+.button:hover {
+  background-color: #b59931;
+  cursor: pointer;
+  transform: scale(1.2);
+}

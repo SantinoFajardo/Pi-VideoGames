@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getVideogameById } from "../../Actions";
+import { Link } from "react-router-dom";
+import s from "./Detail.module.css";
 
 export default function Detail(props) {
   const dispatch = useDispatch();
@@ -11,18 +13,38 @@ export default function Detail(props) {
   }, [dispatch, props.match.params.id]);
 
   return (
-    <div>
+    <div className={s.conteiner}>
       {gameDetail && (
-        <div>
-          <h1>{gameDetail.name}</h1>
-          <img src={gameDetail.image} alt="ImageNotFound" />
-          <h2>Genres: {gameDetail.genres}</h2>
-          <h2>Platforms: {gameDetail.platforms}</h2>
-          <h3>Released : {gameDetail.released}</h3>
-          <h3>Rating: {gameDetail.rating}</h3>
-          <p>Description: {gameDetail.description}</p>
+        <div className={s.conteiner_div}>
+          <h1 className={s.name}>{gameDetail.name}</h1>
+          <div className={s.conteinerDH}>
+            <img
+              src={gameDetail.image}
+              alt="ImageNotFound"
+              className={s.image}
+            />
+            <div className={s.containerDetail}>
+              <h2 className={s.genre}>
+                Genres: <br></br>
+                {gameDetail.genres}
+              </h2>
+              <h2 className={s.platforms}>
+                Platforms: <br></br>
+                {gameDetail.platforms}
+              </h2>
+              <h3 className={s.released}>Released : {gameDetail.released}</h3>
+              <h3 className={s.rating}>Rating: {gameDetail.rating}</h3>
+              <p className={s.description}>
+                Description: <br></br>
+                {gameDetail.description}
+              </p>
+            </div>
+          </div>
         </div>
       )}
+      <Link to="/home">
+        <button className={s.buttonDetail}>HOME</button>
+      </Link>
     </div>
   );
 }

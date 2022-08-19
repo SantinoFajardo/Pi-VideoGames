@@ -1,4 +1,4 @@
-.body {
+body {
   background: linear-gradient(rgba(5, 7, 12, 0.75), rgba(5, 7, 12, 0.75)),
     url(https://media.istockphoto.com/photos/computer-game-workplace-in-dark-room-picture-id1388233887?k=20&m=1388233887&s=612x612&w=0&h=3ZNV8jm25gTNoufBeTDNk5U83Wz48TR3sMVIfKPGa9I=);
   background-size: 100%;
@@ -8,4 +8,55 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+}
+
+.container_div {
+  background: linear-gradient(rgba(5, 7, 12, 0.75), rgba(5, 7, 12, 0.75)),
+    url(https://cdn.pixabay.com/photo/2016/04/16/09/03/video-game-1332694__340.png)
+      center;
+  text-align: center;
+  color: white;
+  padding: 10px;
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+.div_buttons {
+  margin-bottom: 20px;
+}
+
+.div_buttons button {
+  margin: 0 50px;
+  height: 30px;
+  width: 100px;
+  border-radius: 30px;
+  border: none;
+  background-color: #877328;
+  transition: all 1s;
+}
+
+.div_buttons button:hover {
+  background-color: #b59931;
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.div_filters_sorts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.div_filters_sorts select {
+  background-color: #877328;
+  margin: 5px 0;
+  height: 20px;
+  border-radius: 30px;
+  color: black;
+}
+
+.div_filters_sorts option {
+  color: black;
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import s from "./paging.module.css";
 
 export default function Paging({ gamesPerPage, allGames, paging }) {
   const pageNumbers = [];
@@ -9,17 +10,17 @@ export default function Paging({ gamesPerPage, allGames, paging }) {
   }
 
   return (
-    <div>
-      <nav>
-        <ul>
-          {pageNumbers &&
-            pageNumbers.map((n) => (
-              <li key={n}>
-                <button onClick={() => paging(n)}>{n}</button>
-              </li>
-            ))}
-        </ul>
-      </nav>
+    <div className={s.conteiner}>
+      <ul className={s.ul}>
+        {pageNumbers &&
+          pageNumbers.map((n) => (
+            <li key={n} className={s.li}>
+              <button onClick={() => paging(n)} className={s.button}>
+                {n}
+              </button>
+            </li>
+          ))}
+      </ul>
     </div>
   );
 }
