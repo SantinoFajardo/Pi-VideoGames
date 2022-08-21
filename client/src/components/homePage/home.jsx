@@ -102,11 +102,12 @@ export default function Home() {
             <button>CREATE</button>
           </Link>
           <button
+            className={s.refreshPage}
             onClick={(e) => {
               handleClick(e);
             }}
           >
-            REFRESH
+            REFRESH PAGE
           </button>
           <Link to="/">
             <button>BACK</button>

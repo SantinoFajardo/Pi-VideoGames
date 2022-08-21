@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getVideogamesByName } from "../../Actions";
+import { getVideogamesByName, getVideogames } from "../../Actions";
 import s from "./searchBar.module.css";
 
 export default function SearchBar() {
@@ -10,12 +10,13 @@ export default function SearchBar() {
   function handleInputChange(e) {
     e.preventDefault();
     setName(e.target.value);
+    dispatch(getVideogamesByName(name));
   }
 
-  function handleSubmit(e) {
+  function setSearch(e) {
     e.preventDefault();
-    dispatch(getVideogamesByName(name));
     setName("");
+    dispatch(getVideogames());
   }
 
   return (
@@ -27,12 +28,8 @@ export default function SearchBar() {
         placeholder="Search videogame by name"
         onChange={(e) => handleInputChange(e)}
       />
-      <button
-        className={s.button}
-        type="input"
-        onClick={(e) => handleSubmit(e)}
-      >
-        SEARCH
+      <button className={s.button} onClick={(e) => setSearch(e)}>
+        REFRESH SEARCH
       </button>
     </div>
   );
