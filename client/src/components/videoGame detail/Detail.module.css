@@ -34,18 +34,19 @@ button:hover {
 }
 
 .conteinerDH {
-  height: 500px;
+  height: 450px;
   margin: auto;
   margin-top: 30px;
   padding: 20px;
   border: 10px double #877328;
+  overflow: auto;
 }
 
 .image {
   margin-right: 20px;
   float: left;
   width: 500px;
-  height: 500px;
+  height: 450px;
 }
 
 .containerDetail {

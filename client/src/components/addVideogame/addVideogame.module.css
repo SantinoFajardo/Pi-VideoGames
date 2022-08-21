@@ -2,3 +2,134 @@
   color: red;
   font-size: 15px;
 }
+
+.conteiner {
+  padding: 20px;
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 20px;
+  color: wheat;
+}
+
+.description {
+  margin-bottom: 60px;
+}
+
+.description textarea {
+  resize: none;
+  width: 750px;
+  border-radius: 40px;
+  background: #442268;
+  border-color: #341753;
+  color: white;
+  padding: 20px;
+}
+
+.home {
+  margin-bottom: 20px;
+}
+
+form {
+  background: linear-gradient(rgba(5, 7, 12, 0.75), rgba(5, 7, 12, 0.75)),
+    url(https://media.istockphoto.com/photos/large-computer-gaming-setup-lets-child-play-esport-video-games-on-two-picture-id1190641325?k=20&m=1190641325&s=612x612&w=0&h=aE1xUbAF-haZE0kvpK6msbFyfGCBS9RmLUpPnKy1zUU=);
+  background-position: bottom;
+  background-size: 200%;
+  padding: 20px;
+  text-align: center;
+  border-radius: 50px;
+  width: 900px;
+  margin-left: 240px;
+}
+
+label {
+  font-size: 30px;
+}
+
+.formInputs {
+  height: 30px;
+  width: 250px;
+  border-radius: 30px;
+  background-color: #442268;
+  border-color: #341753;
+  color: white;
+  padding: 5px;
+}
+
+form label {
+  display: block;
+}
+
+form div {
+  margin-bottom: 20px;
+}
+
+form div label {
+  margin-bottom: 10px;
+  color: white;
+}
+
+.platforms {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 100px;
+}
+
+.platforms section {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+
+.inputP {
+  margin-top: -10px;
+  margin-right: 10px;
+}
+
+.labelP {
+  color: wheat;
+}
+
+.platformLabel {
+  color: white;
+}
+
+.genres {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.genres section {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+
+.inputG {
+  margin-top: -10px;
+  margin-right: 10px;
+}
+
+.labelG {
+  color: wheat;
+}
+
+.genreLabel {
+  color: white;
+}
+
+.submit {
+  border: none;
+  padding: 12px;
+  font-size: 20px;
+  border-radius: 30px;
+  background: #581579;
+  color: wheat;
+  transition: all 0.5s;
+}
+
+.submit:hover {
+  background-color: #45105f;
+  cursor: pointer;
+}
