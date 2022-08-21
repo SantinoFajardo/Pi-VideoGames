@@ -7,7 +7,7 @@
   display: grid;
   place-items: center;
   background: linear-gradient(rgba(5, 7, 12, 0.8), rgba(5, 7, 12, 0.8)),
-    url(https://i.pinimg.com/564x/f7/4d/81/f74d81f9657cc411b1c2a0e5ce6af4f0.jpg)
+    url(https://img.freepik.com/vector-gratis/controles-videojuegos-estilo-neon-pared-ladrillo_24908-58916.jpg?w=2000)
       center no-repeat;
   background-size: 100%;
   border-radius: 30px;
@@ -29,14 +29,30 @@
 }
 
 .image {
-  border: 1px solid yellow;
+  border: 1px solid violet;
   padding: 10px;
   border-radius: 30px;
   margin: 10px 0;
 }
 
 .currentGames_button {
-  display: block;
+  display: inline;
+  margin: 5px auto;
+  border: none;
+  padding: 7px;
+  background: linear-gradient(rgba(5, 7, 12, 0.3), rgba(5, 7, 12, 0.4)),
+    url(https://www.freevector.com/uploads/vector/preview/19387/CartoonMonsters_03_Preview.jpg);
+  background-size: 100%;
+  color: white;
+  border-radius: 20px;
+  font-size: 15px;
+  transition: all 1s;
+  width: 80px;
+  text-decoration: none;
+}
+
+.currentGames_delete {
+  display: inline;
   margin: 5px auto;
   border: none;
   padding: 7px;

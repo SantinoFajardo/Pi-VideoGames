@@ -1,7 +1,7 @@
 import React, { useState, Suspense, lazy } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import filterGameByPlatform, {
+import {
   getGenres,
   getVideogames,
   filterGamesByGenre,
@@ -9,6 +9,8 @@ import filterGameByPlatform, {
   sortByName,
   sortByRating,
   getPlatforms,
+  deleteGame,
+  deleteGame2,
 } from "../../Actions";
 import { Link } from "react-router-dom";
 // import Card from "../VG Card/videoGameCard";
@@ -52,6 +54,17 @@ export default function Home() {
     setCurrentPage(pageNumber);
   };
 
+  const handleNext = () => {
+    let lastpage = Math.ceil(allVideoGames.length / gamesPerPage);
+    if (currentPage < lastpage) setCurrentPage(currentPage + 1);
+  };
+
+  const handlePrev = () => {
+    if (currentPage !== 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
   function handleFilterGenre(e) {
     dispatch(filterGamesByGenre(e.target.value));
   }
@@ -72,6 +85,11 @@ export default function Home() {
     dispatch(sortByRating(e.target.value));
     setCurrentPage(1);
     setOrder(`Tidy ${e.target.value}`);
+  }
+
+  function onClickDeleteGame(name, id) {
+    dispatch(deleteGame(name));
+    dispatch(deleteGame2(id));
   }
 
   return (
@@ -147,6 +165,8 @@ export default function Home() {
                     rating={vg.rating}
                     image={vg.image}
                     id={vg.id}
+                    deleteGame={onClickDeleteGame}
+                    createInDb={vg.createInDb}
                   />
                 </Suspense>
               </div>
@@ -159,6 +179,8 @@ export default function Home() {
           allGames={allVideoGames.length}
           paging={paging}
           currentPage={currentPage}
+          handleNext={handleNext}
+          handlePrev={handlePrev}
         />
       </div>
     </div>

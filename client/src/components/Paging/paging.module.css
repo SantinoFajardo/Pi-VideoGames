@@ -23,3 +23,29 @@
   transform: scale(1.3);
   cursor: pointer;
 }
+
+.next {
+  height: 30px;
+  width: 30px;
+  background: rgba(61, 7, 75, 1);
+  color: black;
+}
+
+.next:hover {
+  background: rgba(61, 7, 75, 0.8);
+  transform: scale(1.3);
+  cursor: pointer;
+}
+
+.prev {
+  height: 30px;
+  width: 30px;
+  background: rgba(61, 7, 75, 1);
+  color: black;
+}
+
+.prev:hover {
+  background: rgba(61, 7, 75, 0.8);
+  transform: scale(1.3);
+  cursor: pointer;
+}

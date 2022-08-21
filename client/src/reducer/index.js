@@ -92,6 +92,13 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         videoGames: sortByRating,
       };
+    case "DELETE_GAME":
+      return { ...state };
+    case "DELETE_GAME_2":
+      return {
+        ...state,
+        videoGames: state.videoGames.filter((v) => v.id !== action.payload),
+      };
     default:
       return { ...state };
   }

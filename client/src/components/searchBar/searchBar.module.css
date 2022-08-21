@@ -15,12 +15,13 @@
   border-radius: 30px;
   border: none;
   margin-left: 5px;
-  background-color: #877328;
+  background-color: rgb(61, 7, 75);
   transition: all 1s;
+  color: wheat;
 }
 
 .button:hover {
-  background-color: #b59931;
+  background-color: rgb(50, 7, 50);
   cursor: pointer;
   transform: scale(1.2);
 }

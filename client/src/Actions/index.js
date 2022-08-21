@@ -105,3 +105,22 @@ export function sortByRating(payload) {
     payload,
   };
 }
+
+export function deleteGame(payload) {
+  return async function (dispatch) {
+    let call = await axios.delete(
+      `http://localhost:3001/videogames/delete/${payload}`
+    );
+    return {
+      type: "DELETE_GAME",
+      call,
+    };
+  };
+}
+
+export function deleteGame2(payload) {
+  return {
+    type: "DELETE_GAME_2",
+    payload,
+  };
+}

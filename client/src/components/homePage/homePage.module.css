@@ -1,8 +1,8 @@
-body {
-  background: linear-gradient(rgba(5, 7, 12, 0.75), rgba(5, 7, 12, 0.75)),
-    url(https://media.istockphoto.com/vectors/pixel-art-gradient-color-dithering-vector-background-vector-id1047229766?b=1&k=20&m=1047229766&s=612x612&w=0&h=u1FJ6MI6EZyWok4Ih4GoDNMWmzMTAn3Jf5uhaHjSYbE=);
+/* body {
+  background: linear-gradient(rgba(50, 7, 50, 0.75), rgba(5, 7, 12, 0.75)),
+    url(https://c8.alamy.com/compes/r97pgm/los-controles-de-video-juegos-neon-ilustracion-vectorial-de-fondo-r97pgm.jpg);
   background-size: 100%;
-}
+} */
 
 .currenGames {
   display: flex;
@@ -11,9 +11,10 @@ body {
 }
 
 .container_div {
-  background: linear-gradient(rgba(5, 7, 12, 0.75), rgba(5, 7, 12, 0.75)),
-    url(https://cdn.pixabay.com/photo/2016/04/16/09/03/video-game-1332694__340.png)
+  background: linear-gradient(rgba(50, 7, 50, 0.75), rgba(5, 7, 12, 0.75)),
+    url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWu3Ic1s5t4iopMIsjNIX3yoPXnJEA8JslHOX-XcbLYV5Rqv3eMhd_fFaQ-ul1cyNomXk&usqp=CAU)
       center;
+  background-size: 50%;
   text-align: center;
   color: white;
   padding: 10px;
@@ -33,12 +34,13 @@ body {
   width: 100px;
   border-radius: 30px;
   border: none;
-  background-color: #877328;
+  background-color: rgb(61, 7, 75);
   transition: all 1s;
+  color: wheat;
 }
 
 .div_buttons button:hover {
-  background-color: #b59931;
+  background-color: rgb(50, 7, 50);
   cursor: pointer;
   transform: scale(1.2);
 }
@@ -50,13 +52,13 @@ body {
 }
 
 .div_filters_sorts select {
-  background-color: #877328;
+  background-color: rgb(61, 7, 75);
   margin: 5px 0;
   height: 20px;
   border-radius: 30px;
-  color: black;
+  color: wheat;
 }
 
 .div_filters_sorts option {
-  color: black;
+  color: wheat;
 }

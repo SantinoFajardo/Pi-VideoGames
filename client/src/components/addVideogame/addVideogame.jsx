@@ -15,7 +15,7 @@ function validate(input) {
     errors.rating = "Rating must be a number between 0-5";
   } else if (!input.image || input.image.length > 255) {
     errors.image = "The url of image is require and its length less than 255";
-  } else if (input.platforms.length === 0) {
+  } else if (input.platforms.length == 0) {
     errors.platforms = "The game requires at least one platform";
   } else if (!input.genres.length) {
     errors.genres = "The game requires at least one genre";
@@ -42,8 +42,8 @@ export default function Create() {
     description: "",
     released: "",
     rating: "",
-    platforms: [],
     image: "",
+    platforms: [],
     genres: [],
   });
   // STATE ERRORS
@@ -202,6 +202,7 @@ export default function Create() {
               </section>
             );
           })}
+          {errors.genres && <p className={s.errors}>{errors.genres}</p>}
         </div>
         <button className={s.submit} type="submit">
           Created
