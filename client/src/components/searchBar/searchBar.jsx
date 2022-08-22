@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { getVideogamesByName, getVideogames } from "../../Actions";
 import s from "./searchBar.module.css";
 
-export default function SearchBar() {
+export default function SearchBar({ setCurrentPage }) {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
 
@@ -17,6 +17,7 @@ export default function SearchBar() {
     e.preventDefault();
     setName("");
     dispatch(getVideogames());
+    setCurrentPage(1);
   }
 
   return (

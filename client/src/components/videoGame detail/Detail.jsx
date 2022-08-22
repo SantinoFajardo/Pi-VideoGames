@@ -35,7 +35,7 @@ export default function Detail(props) {
               <h3 className={s.released}>Released : {gameDetail.released}</h3>
               <h3 className={s.rating}>Rating: {gameDetail.rating}</h3>
               <p className={s.description}>
-                Description: <br></br>
+                <b>Description:</b> <br></br>
                 {gameDetail.description}
               </p>
             </div>

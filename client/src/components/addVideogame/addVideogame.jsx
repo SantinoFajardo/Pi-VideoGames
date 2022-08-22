@@ -87,7 +87,7 @@ export default function Create() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(postVideoGame(input));
-    alert(`The game ${input.name} has been created successfully `);
+    alert(`The game "${input.name}" has been created successfully `);
     setInput({
       name: "",
       description: "",

@@ -7,6 +7,7 @@ export default function Paging({
   paging,
   handleNext,
   handlePrev,
+  currentPage,
 }) {
   const pageNumbers = [];
 
@@ -24,7 +25,11 @@ export default function Paging({
         {pageNumbers &&
           pageNumbers.map((n) => (
             <li key={n} className={s.li}>
-              <button onClick={() => paging(n)} className={s.button}>
+              <button
+                id={currentPage == n ? s.actualPage : null}
+                onClick={() => paging(n)}
+                className={s.button}
+              >
                 {n}
               </button>
             </li>

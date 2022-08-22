@@ -96,7 +96,7 @@ export default function Home() {
     <div className={s.container}>
       <div className={s.container_div}>
         <h1 className={s.title}>PI-SANTINO FAJARDO</h1>
-        <SearchBar />
+        <SearchBar currentPage={currentPage} setCurrentPage={setCurrentPage} />
         <div className={s.div_buttons}>
           <Link to="/videogames">
             <button>CREATE</button>

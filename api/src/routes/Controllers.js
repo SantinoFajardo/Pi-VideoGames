@@ -161,6 +161,29 @@ const getPlatforms = async () => {
   );
   var platformsApi = apiInfo.data.results.map((p) => p.name);
   return platformsApi;
+  // const URL = `https://api.rawg.io/api/games?key=${apikey}`;
+  // const promise1 = axios.get(URL + "&page=1");
+  // const promise2 = axios.get(URL + "&page=2");
+  // const promise3 = axios.get(URL + "&page=3");
+  // const promise4 = axios.get(URL + "&page=4");
+  // const promise5 = axios.get(URL + "&page=5");
+
+  // await Promise.all([promise1, promise2, promise3, promise4, promise5]).then(
+  //   (values) => {
+  //     apiInfo = values[0].data.results
+  //       .concat(values[1].data.results)
+  //       .concat(values[2].data.results)
+  //       .concat(values[3].data.results)
+  //       .concat(values[4].data.results);
+  //   }
+  // );
+
+  // const plataformas = await apiInfo.map((el) => {
+  //   return {
+  //     platforms: el.platforms.map((p) => p.platform.name),
+  //   };
+  // });
+  // return plataformas;
 };
 
 module.exports = {
