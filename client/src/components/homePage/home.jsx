@@ -11,6 +11,8 @@ import {
   getPlatforms,
   deleteGame,
   deleteGame2,
+  addGameToFavourites,
+  removeGameToFavourites,
 } from "../../Actions";
 import { Link } from "react-router-dom";
 // import Card from "../VG Card/videoGameCard";
@@ -92,6 +94,13 @@ export default function Home() {
     dispatch(deleteGame2(id));
   }
 
+  function addToFavourites(name) {
+    dispatch(addGameToFavourites(name));
+  }
+  function removesGameToFavourites(name) {
+    dispatch(removeGameToFavourites(name));
+  }
+
   return (
     <div className={s.container}>
       <div className={s.container_div}>
@@ -114,25 +123,28 @@ export default function Home() {
           </Link>
         </div>
         <div className={s.div_filters_sorts}>
-          <div>
-            <div className={s.div_filters}>
-              <h2>Filter by:</h2>
-              <select name="" id="" onChange={(e) => handleFilterGenre(e)}>
-                <option value="All">ALL GENRES</option>
-                {allGenres.map((el) => (
-                  <option value={el.name} key={el.name}>
-                    {el.name.toUpperCase()}
-                  </option>
-                ))}
+          <div className={s.div_filters}>
+            <h2>Filter by:</h2>
+            <select name="" id="" onChange={(e) => handleFilterGenre(e)}>
+              <option value="All">ALL GENRES</option>
+              {allGenres.map((el) => (
+                <option value={el.name} key={el.name}>
+                  {el.name.toUpperCase()}
+                </option>
+              ))}
+            </select>
+            <div>
+              <select name="" id="" onChange={(e) => handleFilterCreated(e)}>
+                <option value="All">ALL VIDEOGAMES</option>
+                <option value="DB">ONLY DATA BASE GAMES</option>
+                <option value="API">ONLY API GAMES</option>
               </select>
-              <div>
-                <select name="" id="" onChange={(e) => handleFilterCreated(e)}>
-                  <option value="All">ALL VIDEOGAMES</option>
-                  <option value="DB">ONLY DATA BASE GAMES</option>
-                  <option value="API">ONLY API GAMES</option>
-                </select>
-              </div>
             </div>
+          </div>
+          <div>
+            <Link to="/favourites">
+              <button className={s.buttonFavourites}>Favourites</button>
+            </Link>
           </div>
           <div className={s.div_sorts}>
             <h2>Order by:</h2>
@@ -152,12 +164,13 @@ export default function Home() {
         </div>
       </div>
       <div className={s.currenGames}>
-        {currentGames &&
+        {currentGames ? (
           currentGames.map((vg) => {
             return (
               <div>
                 <Suspense fallback={<Loading />}>
                   <Card
+                    vg={vg}
                     genreBD={vg.createInDb ? vg.genres : []}
                     genreAPI={!vg.createInDb ? vg.genres : []}
                     key={vg.name}
@@ -168,11 +181,16 @@ export default function Home() {
                     id={vg.id}
                     deleteGame={onClickDeleteGame}
                     createInDb={vg.createInDb}
+                    addToFavourites={addToFavourites}
+                    removesGameToFavourites={removesGameToFavourites}
                   />
                 </Suspense>
               </div>
             );
-          })}
+          })
+        ) : (
+          <Loading />
+        )}
       </div>
       <div>
         <Paging

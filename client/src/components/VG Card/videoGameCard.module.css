@@ -37,7 +37,7 @@
 
 .currentGames_button {
   display: inline;
-  margin: 5px auto;
+  margin: 5px 10px;
   border: none;
   padding: 7px;
   background: linear-gradient(rgba(5, 7, 12, 0.3), rgba(5, 7, 12, 0.4)),
@@ -54,6 +54,22 @@
 .currentGames_delete {
   display: inline;
   margin: 5px auto;
+  border: none;
+  padding: 7px;
+  background: linear-gradient(rgba(5, 7, 12, 0.3), rgba(5, 7, 12, 0.4)),
+    url(https://www.freevector.com/uploads/vector/preview/19387/CartoonMonsters_03_Preview.jpg);
+  background-size: 100%;
+  color: white;
+  border-radius: 20px;
+  font-size: 15px;
+  transition: all 1s;
+  width: 80px;
+  text-decoration: none;
+}
+
+.addFavourites {
+  display: inline;
+  margin: 5px 10px;
   border: none;
   padding: 7px;
   background: linear-gradient(rgba(5, 7, 12, 0.3), rgba(5, 7, 12, 0.4)),

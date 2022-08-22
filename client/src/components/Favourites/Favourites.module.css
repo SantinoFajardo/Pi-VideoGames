@@ -1,0 +1,22 @@
+.title {
+  color: wheat;
+  text-align: center;
+}
+
+.currentGames {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.buttonHome {
+  margin: 30px auto;
+  height: 40px;
+  width: 150px;
+  border-radius: 30px;
+  border: none;
+  background-color: rgb(61, 7, 75);
+  transition: all 1s;
+  color: wheat;
+  display: block;
+}

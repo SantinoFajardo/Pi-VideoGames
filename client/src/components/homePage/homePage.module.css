@@ -25,11 +25,23 @@
 }
 
 .div_buttons {
+  margin-left: 60px;
   margin-bottom: 20px;
 }
 
 .div_buttons button {
   margin: 0 50px;
+  height: 40px;
+  width: 150px;
+  border-radius: 30px;
+  border: none;
+  background-color: rgb(61, 7, 75);
+  transition: all 1s;
+  color: wheat;
+}
+
+.buttonFavourites {
+  margin: 20px 40px;
   height: 40px;
   width: 150px;
   border-radius: 30px;
@@ -48,7 +60,7 @@
 .div_filters_sorts {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .div_filters_sorts select {

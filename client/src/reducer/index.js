@@ -4,6 +4,7 @@ const initialState = {
   videoGameDetail: {},
   genres: [],
   platforms: [],
+  favouritesGames: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -98,6 +99,21 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         videoGames: state.videoGames.filter((v) => v.id !== action.payload),
+      };
+    case "ADD_GAME_TO_FAVOURITE":
+      let findGame = state.videoGames.find((el) => el.name == action.payload);
+      if (!state.favouritesGames.includes(findGame)) {
+        return {
+          ...state,
+          favouritesGames: state.favouritesGames.concat(findGame),
+        };
+      }
+    case "REMOVE_GAME_TO_FAVOURITES":
+      return {
+        ...state,
+        favouritesGames: state.favouritesGames.filter(
+          (vg) => vg.name !== action.payload
+        ),
       };
     default:
       return { ...state };

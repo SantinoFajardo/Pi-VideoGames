@@ -124,3 +124,17 @@ export function deleteGame2(payload) {
     payload,
   };
 }
+
+export function addGameToFavourites(payload) {
+  return {
+    type: "ADD_GAME_TO_FAVOURITE",
+    payload,
+  };
+}
+
+export function removeGameToFavourites(payload) {
+  return {
+    type: "REMOVE_GAME_TO_FAVOURITES",
+    payload,
+  };
+}
