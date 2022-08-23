@@ -15,10 +15,10 @@ function validate(input) {
     errors.rating = "Rating must be a number between 0-5";
   } else if (!input.image || input.image.length > 255) {
     errors.image = "The url of image is require and its length less than 255";
+  } else if (input.genres.length == 0) {
+    errors.genres = "The game requires at least one genre";
   } else if (input.platforms.length == 0) {
     errors.platforms = "The game requires at least one platform";
-  } else if (!input.genres.length) {
-    errors.genres = "The game requires at least one genre";
   }
   return errors;
 }
@@ -43,8 +43,8 @@ export default function Create() {
     released: "",
     rating: "",
     image: "",
-    platforms: [],
     genres: [],
+    platforms: [],
   });
   // STATE ERRORS
   const [errors, setErrors] = useState({});
@@ -93,8 +93,8 @@ export default function Create() {
       description: "",
       released: "",
       rating: "",
-      platforms: [],
       image: "",
+      platforms: [],
       genres: [],
     });
     history.push("/home");
@@ -168,24 +168,6 @@ export default function Create() {
           />
           {errors.image && <p className={s.error}>{errors.image}</p>}
         </div>
-        <label className={s.platformLabel}>Platforms: </label>
-        <div className={s.platforms}>
-          {platforms.map((platform) => {
-            return (
-              <section key={platform}>
-                <input
-                  className={s.inputP}
-                  type="checkbox"
-                  name={platform}
-                  value={platform}
-                  onChange={(e) => handleCheckPlatform(e)}
-                />
-                <label className={s.labelP}>{platform}</label>
-              </section>
-            );
-          })}
-          {errors.platforms && <p className={s.error}>{errors.platforms}</p>}
-        </div>
         <label className={s.genreLabel}>Genres: </label>
         <div className={s.genres}>
           {genres.map((genre) => {
@@ -202,7 +184,29 @@ export default function Create() {
               </section>
             );
           })}
-          {errors.genres && <p className={s.errors}>{errors.genres}</p>}
+          {input.genres.length == 0 && (
+            <p className={s.error}>{errors.genres}</p>
+          )}
+        </div>
+        <label className={s.platformLabel}>Platforms: </label>
+        <div className={s.platforms}>
+          {platforms.map((platform) => {
+            return (
+              <section key={platform}>
+                <input
+                  className={s.inputP}
+                  type="checkbox"
+                  name={platform}
+                  value={platform}
+                  onChange={(e) => handleCheckPlatform(e)}
+                />
+                <label className={s.labelP}>{platform}</label>
+              </section>
+            );
+          })}
+          {input.platforms.length == 0 && (
+            <p className={s.error}>{errors.platforms}</p>
+          )}
         </div>
         <button className={s.submit} type="submit">
           Created

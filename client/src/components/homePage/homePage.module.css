@@ -1,9 +1,3 @@
-/* body {
-  background: linear-gradient(rgba(50, 7, 50, 0.75), rgba(5, 7, 12, 0.75)),
-    url(https://c8.alamy.com/compes/r97pgm/los-controles-de-video-juegos-neon-ilustracion-vectorial-de-fondo-r97pgm.jpg);
-  background-size: 100%;
-} */
-
 .currenGames {
   display: flex;
   flex-wrap: wrap;
@@ -22,6 +16,16 @@
 
 .title {
   margin-bottom: 20px;
+  font-family: "Cedarville Cursive", cursive;
+  text-shadow: 0 0 5px violet, 0 0 5px violet, 0 0 5px violet, 0 0 5px violet;
+  animation: parp 2s infinite backwards;
+}
+
+@keyframes parp {
+  to {
+    color: blueviolet;
+    text-shadow: none;
+  }
 }
 
 .div_buttons {

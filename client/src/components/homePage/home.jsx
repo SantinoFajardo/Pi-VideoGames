@@ -1,4 +1,4 @@
-import React, { useState, Suspense, lazy } from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -15,17 +15,17 @@ import {
   removeGameToFavourites,
 } from "../../Actions";
 import { Link } from "react-router-dom";
-// import Card from "../VG Card/videoGameCard";
+import Card from "../VG Card/videoGameCard";
 import Paging from "../Paging/paging";
 import s from "./homePage.module.css";
 import SearchBar from "../searchBar/searchBar";
 import Loading from "../Loading/loading";
-const Card = lazy(() => import("../VG Card/videoGameCard"));
 
 export default function Home() {
   //ESTADOS LOCALES:
   const [currentPage, setCurrentPage] = useState(1); // Pagina actual
   const [gamesPerPage, setGamesPerPage] = useState(15); // games por pagina
+  const [loading, setLoading] = useState(false);
   const [order, setOrder] = useState("");
 
   // DISPATCHS/STATES:
@@ -35,10 +35,11 @@ export default function Home() {
   const allPlatforms = useSelector((state) => state.platforms);
 
   // USEEFFECT:
-  useEffect(() => {
-    dispatch(getVideogames());
+  useEffect(async () => {
     dispatch(getGenres());
     dispatch(getPlatforms());
+    await dispatch(getVideogames());
+    setLoading(true);
   }, [dispatch]);
 
   // CONSTANTES/VARIABLES:
@@ -164,43 +165,43 @@ export default function Home() {
         </div>
       </div>
       <div className={s.currenGames}>
-        {currentGames ? (
+        {loading == false ? (
+          <Loading />
+        ) : (
           currentGames.map((vg) => {
             return (
               <div>
-                <Suspense fallback={<Loading />}>
-                  <Card
-                    vg={vg}
-                    genreBD={vg.createInDb ? vg.genres : []}
-                    genreAPI={!vg.createInDb ? vg.genres : []}
-                    key={vg.name}
-                    name={vg.name}
-                    genre={vg.genres + ""}
-                    rating={vg.rating}
-                    image={vg.image}
-                    id={vg.id}
-                    deleteGame={onClickDeleteGame}
-                    createInDb={vg.createInDb}
-                    addToFavourites={addToFavourites}
-                    removesGameToFavourites={removesGameToFavourites}
-                  />
-                </Suspense>
+                <Card
+                  vg={vg}
+                  genreBD={vg.createInDb ? vg.genres : []}
+                  genreAPI={!vg.createInDb ? vg.genres : []}
+                  key={vg.name}
+                  name={vg.name}
+                  genre={vg.genres + ""}
+                  rating={vg.rating}
+                  image={vg.image}
+                  id={vg.id}
+                  deleteGame={onClickDeleteGame}
+                  createInDb={vg.createInDb}
+                  addToFavourites={addToFavourites}
+                  removesGameToFavourites={removesGameToFavourites}
+                />
               </div>
             );
           })
-        ) : (
-          <Loading />
         )}
       </div>
       <div>
-        <Paging
-          gamesPerPage={gamesPerPage}
-          allGames={allVideoGames.length}
-          paging={paging}
-          currentPage={currentPage}
-          handleNext={handleNext}
-          handlePrev={handlePrev}
-        />
+        {loading == true && (
+          <Paging
+            gamesPerPage={gamesPerPage}
+            allGames={allVideoGames.length}
+            paging={paging}
+            currentPage={currentPage}
+            handleNext={handleNext}
+            handlePrev={handlePrev}
+          />
+        )}
       </div>
     </div>
   );

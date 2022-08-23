@@ -1,20 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getVideogameById } from "../../Actions";
 import { Link } from "react-router-dom";
 import s from "./Detail.module.css";
+import Loading from "../Loading/loading";
 
 export default function Detail(props) {
   const dispatch = useDispatch();
   const gameDetail = useSelector((state) => state.videoGameDetail);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    dispatch(getVideogameById(props.match.params.id));
+  useEffect(async () => {
+    await dispatch(getVideogameById(props.match.params.id));
+    setLoading(true);
   }, [dispatch, props.match.params.id]);
 
   return (
     <div className={s.conteiner}>
-      {gameDetail && (
+      {loading == false ? (
+        <div className={s.loadingConteiner}>
+          <Loading />
+        </div>
+      ) : (
         <div className={s.conteiner_div}>
           <h1 className={s.name}>{gameDetail.name}</h1>
           <div className={s.conteinerDH}>
@@ -40,11 +47,11 @@ export default function Detail(props) {
               </p>
             </div>
           </div>
+          <Link to="/home">
+            <button className={s.buttonDetail}>HOME</button>
+          </Link>
         </div>
       )}
-      <Link to="/home">
-        <button className={s.buttonDetail}>HOME</button>
-      </Link>
     </div>
   );
 }

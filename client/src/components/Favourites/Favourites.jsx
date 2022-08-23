@@ -1,9 +1,8 @@
 import React from "react";
 import s from "./Favourites.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Card from "../VG Card/videoGameCard";
 import { Link } from "react-router-dom";
-import { removeGameToFavourites } from "../../Actions";
 
 export default function Favourites({
   addToFavourites,

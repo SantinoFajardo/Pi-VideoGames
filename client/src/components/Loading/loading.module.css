@@ -1,18 +1,54 @@
-.container {
-  height: 470px;
-  width: 470px;
-  text-align: center;
-  margin: 20px 0;
-  padding: 10px;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(rgba(5, 7, 12, 0.8), rgba(5, 7, 12, 0.8)),
-    url(https://img.freepik.com/vector-gratis/controles-videojuegos-estilo-neon-pared-ladrillo_24908-58916.jpg?w=2000)
-      center no-repeat;
-  background-size: 100%;
-  border-radius: 30px;
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-.Loading {
+.conteiner {
+  background: grey;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  -webkit-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+  z-index: 10000;
+}
+
+.carga {
+  border: 15px solid violet;
+  border-top-color: blueviolet;
+  border-top-style: groove;
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
+  margin-bottom: 40px;
+  margin-top: 100px;
+  -webkit-animation: girar 1.5s linear infinite;
+  -o-animation: girar 1.5s linear infinite;
+  animation: girar 1.5s linear infinite;
+}
+
+@keyframes girar {
+  from {
+    transform: rotate (0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingTitle {
   color: wheat;
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
 }

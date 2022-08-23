@@ -71,4 +71,12 @@ button:hover {
 
 .description {
   font-size: 18px;
+  text-align: center;
+}
+
+.loadingConteiner {
+  margin-top: 150px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
