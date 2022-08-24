@@ -34,12 +34,11 @@ button:hover {
 }
 
 .conteinerDH {
-  height: 450px;
+  height: 100%;
   margin: auto;
   margin-top: 30px;
   padding: 20px;
   border: 10px double rgb(50, 7, 50);
-  overflow: auto;
 }
 
 .image {
@@ -79,4 +78,15 @@ button:hover {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+}
+
+@media screen and (max-width: 1500px) {
+  .conteinerDH {
+    height: 100%;
+    text-align: center;
+  }
+
+  .image {
+    width: 100%;
+  }
 }

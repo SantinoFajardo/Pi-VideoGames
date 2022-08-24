@@ -70,10 +70,12 @@ export default function Home() {
 
   function handleFilterGenre(e) {
     dispatch(filterGamesByGenre(e.target.value));
+    setCurrentPage(1);
   }
 
   function handleFilterCreated(e) {
     dispatch(filterGamesByCreated(e.target.value));
+    setCurrentPage(1);
   }
 
   function handleSortByName(e) {
@@ -106,7 +108,6 @@ export default function Home() {
     <div className={s.container}>
       <div className={s.container_div}>
         <h1 className={s.title}>PI-SANTINO FAJARDO</h1>
-        <SearchBar currentPage={currentPage} setCurrentPage={setCurrentPage} />
         <div className={s.div_buttons}>
           <Link to="/videogames">
             <button>CREATE</button>
@@ -117,52 +118,58 @@ export default function Home() {
               handleClick(e);
             }}
           >
-            REFRESH PAGE
+            REFRESH
           </button>
           <Link to="/">
             <button>BACK</button>
           </Link>
+          <Link to="/favourites">
+            <button className={s.buttonFavourites}>FAVOURITES</button>
+          </Link>
         </div>
-        <div className={s.div_filters_sorts}>
-          <div className={s.div_filters}>
-            <h2>Filter by:</h2>
-            <select name="" id="" onChange={(e) => handleFilterGenre(e)}>
-              <option value="All">ALL GENRES</option>
-              {allGenres.map((el) => (
-                <option value={el.name} key={el.name}>
-                  {el.name.toUpperCase()}
-                </option>
-              ))}
-            </select>
-            <div>
-              <select name="" id="" onChange={(e) => handleFilterCreated(e)}>
-                <option value="All">ALL VIDEOGAMES</option>
-                <option value="DB">ONLY DATA BASE GAMES</option>
-                <option value="API">ONLY API GAMES</option>
-              </select>
-            </div>
-          </div>
-          <div>
-            <Link to="/favourites">
-              <button className={s.buttonFavourites}>Favourites</button>
-            </Link>
-          </div>
-          <div className={s.div_sorts}>
-            <h2>Order by:</h2>
-            <div>
-              <select name="" id="" onChange={(e) => handleSortByName(e)}>
-                <option value="asc">A-Z</option>
-                <option value="des">Z-A</option>
-              </select>
-            </div>
-            <div>
-              <select name="" id="" onChange={(e) => handleSortByRating(e)}>
-                <option value="bestr">WORST RATINGS</option>
-                <option value="worstr">BEST RATINGS</option>
-              </select>
-            </div>
-          </div>
+        <SearchBar currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      </div>
+      <div className={s.div_filters_sorts}>
+        <select name="" id="" onChange={(e) => handleFilterGenre(e)}>
+          <option value="All">ALL GENRES</option>
+          {allGenres.map((el) => (
+            <option value={el.name} key={el.name}>
+              {el.name.toUpperCase()}
+            </option>
+          ))}
+        </select>
+        <div>
+          <select name="" id="" onChange={(e) => handleFilterCreated(e)}>
+            <option value="All">ALL VIDEOGAMES</option>
+            <option value="DB">ONLY DATA BASE GAMES</option>
+            <option value="API">ONLY API GAMES</option>
+          </select>
         </div>
+
+        <div>
+          <select name="" id="" onChange={(e) => handleSortByName(e)}>
+            <option value="asc">A-Z</option>
+            <option value="des">Z-A</option>
+          </select>
+        </div>
+        <div>
+          <select name="" id="" onChange={(e) => handleSortByRating(e)}>
+            <option value="bestr">WORST RATINGS</option>
+            <option value="worstr">BEST RATINGS</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        {loading == true && (
+          <Paging
+            gamesPerPage={gamesPerPage}
+            allGames={allVideoGames.length}
+            paging={paging}
+            currentPage={currentPage}
+            handleNext={handleNext}
+            handlePrev={handlePrev}
+          />
+        )}
       </div>
       <div className={s.currenGames}>
         {loading == false ? (

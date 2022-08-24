@@ -26,7 +26,7 @@ export default function Create() {
   // DISPATCHS/STATES/HISTORY
   const dispatch = useDispatch();
   const history = useHistory();
-  const genres = useSelector((state) => state.genres);
+  const allgenres = useSelector((state) => state.genres);
   const platforms = useSelector((state) => state.platforms);
 
   // USEEFFECT
@@ -100,6 +100,22 @@ export default function Create() {
     history.push("/home");
   };
 
+  const deleteGenre = (name) => {
+    let genresFilter = input.genres.filter((g) => g != name);
+    setInput({
+      ...input,
+      genres: genresFilter,
+    });
+  };
+
+  const deletePlatforms = (name) => {
+    let platformFilter = input.platforms.filter((p) => p != name);
+    setInput({
+      ...input,
+      platforms: platformFilter,
+    });
+  };
+
   return (
     <div className={s.conteiner}>
       <div>
@@ -108,110 +124,128 @@ export default function Create() {
           <button className={s.home}>Come back home</button>
         </Link>
       </div>
-      <form action="" onSubmit={(e) => handleSubmit(e)}>
-        <div>
-          <div className={s.name}>
-            <label>Name</label>
+      <div className={s.divForm}>
+        <form action="" onSubmit={(e) => handleSubmit(e)}>
+          <div>
+            <div className={s.name}>
+              <label>Name</label>
+              <input
+                className={s.formInputs}
+                type="text"
+                value={input.name}
+                name="name"
+                onChange={(e) => handleChange(e)}
+              />
+              {errors.name && <p className={s.error}>{errors.name}</p>}
+            </div>
+            <div className={s.released}>
+              <label>Released</label>
+              <input
+                className={s.formInputs}
+                type="date"
+                name="released"
+                value={input.released}
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
+            <div>
+              <label>Rating</label>
+              <input
+                className={s.formInputs}
+                type="number"
+                name="rating"
+                value={input.rating}
+                onChange={(e) => handleChange(e)}
+              />
+              {errors.rating && <p className={s.error}>{errors.rating}</p>}
+            </div>
+          </div>
+          <div className={s.description}>
+            <label>Description</label>
+            <textarea
+              name="description"
+              id=""
+              cols="30"
+              rows="10"
+              value={input.description}
+              onChange={(e) => handleChange(e)}
+            ></textarea>
+            {errors.description && (
+              <p className={s.error}>{errors.description}</p>
+            )}
+          </div>
+          <div>
+            <label>Image</label>
             <input
               className={s.formInputs}
               type="text"
-              value={input.name}
-              name="name"
+              name="image"
+              value={input.image}
               onChange={(e) => handleChange(e)}
             />
-            {errors.name && <p className={s.error}>{errors.name}</p>}
+            {errors.image && <p className={s.error}>{errors.image}</p>}
           </div>
-          <div className={s.released}>
-            <label>Released</label>
-            <input
-              className={s.formInputs}
-              type="date"
-              name="released"
-              value={input.released}
-              onChange={(e) => handleChange(e)}
-            />
+          <label className={s.genreLabel}>Genres: </label>
+          <div className={s.genres}>
+            {allgenres.map((genre) => {
+              return (
+                <section key={genre.name}>
+                  <input
+                    className={s.inputG}
+                    type="checkbox"
+                    name={genre.name}
+                    value={genre.name}
+                    onChange={(e) => handleCheckGenre(e)}
+                  />
+                  <label className={s.labelG}>{genre.name}</label>
+                  {input.genres.includes(genre.name) ? (
+                    <button
+                      className={s.platform_genre_button}
+                      onClick={() => deleteGenre(genre.name)}
+                    >
+                      X
+                    </button>
+                  ) : null}
+                </section>
+              );
+            })}
           </div>
-          <div>
-            <label>Rating</label>
-            <input
-              className={s.formInputs}
-              type="number"
-              name="rating"
-              value={input.rating}
-              onChange={(e) => handleChange(e)}
-            />
-            {errors.rating && <p className={s.error}>{errors.rating}</p>}
-          </div>
-        </div>
-        <div className={s.description}>
-          <label>Description</label>
-          <textarea
-            name="description"
-            id=""
-            cols="30"
-            rows="10"
-            value={input.description}
-            onChange={(e) => handleChange(e)}
-          ></textarea>
-          {errors.description && (
-            <p className={s.error}>{errors.description}</p>
-          )}
-        </div>
-        <div>
-          <label>Image</label>
-          <input
-            className={s.formInputs}
-            type="text"
-            name="image"
-            value={input.image}
-            onChange={(e) => handleChange(e)}
-          />
-          {errors.image && <p className={s.error}>{errors.image}</p>}
-        </div>
-        <label className={s.genreLabel}>Genres: </label>
-        <div className={s.genres}>
-          {genres.map((genre) => {
-            return (
-              <section key={genre.name}>
-                <input
-                  className={s.inputG}
-                  type="checkbox"
-                  name={genre.name}
-                  value={genre.name}
-                  onChange={(e) => handleCheckGenre(e)}
-                />
-                <label className={s.labelG}>{genre.name}</label>
-              </section>
-            );
-          })}
           {input.genres.length == 0 && (
             <p className={s.error}>{errors.genres}</p>
           )}
-        </div>
-        <label className={s.platformLabel}>Platforms: </label>
-        <div className={s.platforms}>
-          {platforms.map((platform) => {
-            return (
-              <section key={platform}>
-                <input
-                  className={s.inputP}
-                  type="checkbox"
-                  name={platform}
-                  value={platform}
-                  onChange={(e) => handleCheckPlatform(e)}
-                />
-                <label className={s.labelP}>{platform}</label>
-              </section>
-            );
-          })}
-          {input.platforms.length == 0 && (
-            <p className={s.error}>{errors.platforms}</p>
-          )}
-        </div>
-        <button className={s.submit} type="submit">
-          Created
-        </button>
-      </form>
+          <label className={s.platformLabel}>Platforms: </label>
+          <div className={s.platforms}>
+            {platforms.map((platform) => {
+              return (
+                <section key={platform}>
+                  <input
+                    className={s.inputP}
+                    type="checkbox"
+                    name={platform}
+                    value={platform}
+                    onChange={(e) => handleCheckPlatform(e)}
+                  />
+                  <label className={s.labelP}>{platform}</label>
+                  {input.platforms.includes(platform) ? (
+                    <button
+                      className={s.platform_genre_button}
+                      onClick={() => deletePlatforms(platform)}
+                    >
+                      X
+                    </button>
+                  ) : null}
+                </section>
+              );
+            })}
+            {!input.platforms.length && (
+              <p className={s.error}>{errors.platforms}</p>
+            )}
+          </div>
+          <button className={s.submit} type="submit">
+            Created
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

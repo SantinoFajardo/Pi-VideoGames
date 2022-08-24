@@ -7,10 +7,11 @@ export default function SearchBar({ setCurrentPage }) {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
 
-  function handleInputChange(e) {
+  async function handleInputChange(e) {
     e.preventDefault();
     setName(e.target.value);
-    dispatch(getVideogamesByName(name));
+    await dispatch(getVideogamesByName(name));
+    setCurrentPage(1);
   }
 
   function setSearch(e) {

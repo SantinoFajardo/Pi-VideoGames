@@ -1,6 +1,12 @@
 .error {
   color: red;
   font-size: 15px;
+  margin-bottom: 40px;
+}
+
+.divForm {
+  display: flex;
+  justify-content: center;
 }
 
 .conteiner {
@@ -20,7 +26,7 @@
 
 .description textarea {
   resize: none;
-  width: 750px;
+  width: 80%;
   border-radius: 40px;
   background: rgb(62, 7, 75);
   border-color: #341753;
@@ -41,7 +47,8 @@ form {
   text-align: center;
   border-radius: 50px;
   width: 900px;
-  margin-left: 240px;
+  min-width: 500px;
+  /* margin-left: 270px; */
 }
 
 label {
@@ -148,4 +155,16 @@ form div label {
 .home:hover {
   background-color: rgb(50, 7, 50);
   cursor: pointer;
+}
+
+.platform_genre_button {
+  height: 20px;
+  width: 20px;
+  margin: 7px 5px;
+  border-color: white;
+  background-color: rgb(189, 15, 15);
+}
+
+.platform_genre_button:hover {
+  background-color: red;
 }

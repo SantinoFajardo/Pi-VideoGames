@@ -1,5 +1,8 @@
 .conteiner {
-  margin-bottom: 20px;
+  margin-top: 25px;
+  display: inline-block;
+  position: absolute;
+  right: 10px;
 }
 
 .input {
@@ -24,4 +27,12 @@
   background-color: rgb(50, 7, 50);
   cursor: pointer;
   transform: scale(1.2);
+}
+
+@media screen and (max-width: 1435px) {
+  .conteiner {
+    position: relative;
+    display: block;
+    margin-bottom: 15px;
+  }
 }

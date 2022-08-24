@@ -5,20 +5,19 @@
 }
 
 .container_div {
-  background: linear-gradient(rgba(50, 7, 50, 0.75), rgba(5, 7, 12, 0.75)),
-    url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWu3Ic1s5t4iopMIsjNIX3yoPXnJEA8JslHOX-XcbLYV5Rqv3eMhd_fFaQ-ul1cyNomXk&usqp=CAU)
-      center;
-  background-size: 50%;
-  text-align: center;
-  color: white;
+  display: flex;
+  flex-wrap: wrap;
   padding: 10px;
+  background-color: rgba(50, 7, 50, 0.5);
+  height: 100px;
 }
 
 .title {
-  margin-bottom: 20px;
+  margin-top: 20px;
   font-family: "Cedarville Cursive", cursive;
   text-shadow: 0 0 5px violet, 0 0 5px violet, 0 0 5px violet, 0 0 5px violet;
   animation: parp 2s infinite backwards;
+  display: inline-block;
 }
 
 @keyframes parp {
@@ -34,14 +33,15 @@
 }
 
 .div_buttons button {
-  margin: 0 50px;
+  margin: 0 15px;
   height: 40px;
-  width: 150px;
+  width: 100px;
   border-radius: 30px;
   border: none;
   background-color: rgb(61, 7, 75);
   transition: all 1s;
   color: wheat;
+  margin-top: 20px;
 }
 
 .buttonFavourites {
@@ -62,14 +62,16 @@
 }
 
 .div_filters_sorts {
+  margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  background: rgba(0, 0, 0, 1);
+  padding: 15px;
 }
 
 .div_filters_sorts select {
   background-color: rgb(61, 7, 75);
-  margin: 5px 0;
   height: 20px;
   border-radius: 30px;
   color: wheat;
@@ -77,4 +79,30 @@
 
 .div_filters_sorts option {
   color: wheat;
+}
+
+@media screen and (max-width: 1435px) {
+  .container_div {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    display: block;
+    text-align: center;
+  }
+  .title {
+    display: block;
+  }
+  .div_buttons {
+    display: block;
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .container_div {
+    width: 370px;
+    min-width: 250px;
+    padding: 0;
+    margin: 0;
+  }
 }
