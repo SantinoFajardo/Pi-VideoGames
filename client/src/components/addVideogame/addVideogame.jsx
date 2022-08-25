@@ -86,18 +86,29 @@ export default function Create() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(postVideoGame(input));
-    alert(`The game "${input.name}" has been created successfully `);
-    setInput({
-      name: "",
-      description: "",
-      released: "",
-      rating: "",
-      image: "",
-      platforms: [],
-      genres: [],
-    });
-    history.push("/home");
+    if (
+      input.name ||
+      input.description ||
+      input.rating ||
+      input.image ||
+      input.platforms.length ||
+      input.genres.length
+    ) {
+      dispatch(postVideoGame(input));
+      alert(`The game "${input.name}" has been created successfully `);
+      setInput({
+        name: "",
+        description: "",
+        released: "",
+        rating: "",
+        image: "",
+        platforms: [],
+        genres: [],
+      });
+      history.push("/home");
+    } else {
+      alert(`Some important data is missing`);
+    }
   };
 
   const deleteGenre = (name) => {

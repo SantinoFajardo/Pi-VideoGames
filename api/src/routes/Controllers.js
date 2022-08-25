@@ -85,10 +85,6 @@ const getSpecificGame = async (id) => {
   });
 
   if (gameFromDataBase) {
-    let genrestr = [];
-    for (let i = 0; i < gameFromDataBase.genres.length; i++) {
-      genrestr.push(gameFromDataBase.genres[i].name);
-    }
     const objdbgame = {
       name: gameFromDataBase.name,
       platforms: gameFromDataBase.platforms,
