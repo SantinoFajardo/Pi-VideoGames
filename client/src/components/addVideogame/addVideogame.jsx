@@ -87,11 +87,11 @@ export default function Create() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
-      input.name ||
-      input.description ||
-      input.rating ||
-      input.image ||
-      input.platforms.length ||
+      input.name &&
+      input.description &&
+      input.rating &&
+      input.image &&
+      input.platforms.length &&
       input.genres.length
     ) {
       dispatch(postVideoGame(input));
