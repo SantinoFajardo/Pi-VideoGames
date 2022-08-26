@@ -1,8 +1,16 @@
 .conteiner {
-  margin-top: 25px;
+  margin-top: 5px;
   display: inline-block;
   position: absolute;
   right: 10px;
+}
+
+.divConteiner {
+  width: 500px;
+}
+
+.divConteiner input {
+  margin: 2px 0;
 }
 
 .input {
@@ -34,5 +42,13 @@
     position: relative;
     display: block;
     margin-bottom: 15px;
+    text-align: center;
+  }
+  .divConteiner {
+    width: 300px;
+    display: inline-block;
+  }
+  .button {
+    width: 100px;
   }
 }

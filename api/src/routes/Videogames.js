@@ -5,9 +5,10 @@ var router = express.Router();
 
 router.get("/", async (req, res) => {
   let name = req.query.name;
+  let released = req.query.released;
   try {
     let allGames = await controllers.getAllGames();
-    if (name) {
+    if (name && !released) {
       let correctName = name.toLowerCase();
       let gameByName = await allGames.filter((el) =>
         el.name.toLowerCase().includes(correctName)
@@ -15,10 +16,43 @@ router.get("/", async (req, res) => {
       if (gameByName.length) {
         return res.status(200).send(gameByName);
       } else {
-        res
+        return res
           .status(400)
           .send(
             `Lo siento, no hemos encontrado el juego con el nombre ${name}`
+          );
+      }
+    }
+    if (released && !name) {
+      let correctReleased = released.slice(0, 4);
+      let gameByReleased = await allGames.filter(
+        (el) => el.released.slice(0, 4) == correctReleased
+      );
+      if (gameByReleased.length) {
+        return res.status(200).send(gameByReleased);
+      } else {
+        return res
+          .status(400)
+          .send(
+            `Lo siento, no hemos encontrado el juego con released ${released}`
+          );
+      }
+    }
+    if (released && name) {
+      let correctReleased = released.slice(0, 4);
+      let correctName = name.toLowerCase();
+      let gameByNameAndReleased = await allGames.filter(
+        (el) =>
+          el.name.toLowerCase().includes(correctName) &&
+          el.released.slice(0, 4) == correctReleased
+      );
+      if (gameByNameAndReleased.length) {
+        return res.status(200).send(gameByNameAndReleased);
+      } else {
+        return res
+          .status(400)
+          .send(
+            `Lo siento, no hemos encontrado el juego con released ${released} y el nombre ${name}`
           );
       }
     }

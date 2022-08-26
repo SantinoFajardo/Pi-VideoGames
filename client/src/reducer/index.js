@@ -1,3 +1,5 @@
+import { bindActionCreators } from "redux";
+
 const initialState = {
   videoGames: [],
   videoGamesFilter: [],
@@ -15,7 +17,17 @@ export default function rootReducer(state = initialState, action) {
         videoGames: action.payload,
         videoGamesFilter: action.payload,
       };
-    case "GET_VIDEOGAME_BY_NAME":
+    // case "GET_VIDEOGAME_BY_NAME":
+    //   return {
+    //     ...state,
+    //     videoGames: action.payload,
+    //   };
+    // case "GET_VIDEOGAME_BY_RELEASED":
+    //   return {
+    //     ...state,
+    //     videoGames: action.payload,
+    //   };
+    case "GET_VIDEOGAME_BY_NAME_AND_RELEASED":
       return {
         ...state,
         videoGames: action.payload,
