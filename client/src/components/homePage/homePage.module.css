@@ -66,7 +66,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  background: rgba(0, 0, 0, 1);
+  background: rgba(0, 0, 0, 0.7);
   padding: 15px;
 }
 
