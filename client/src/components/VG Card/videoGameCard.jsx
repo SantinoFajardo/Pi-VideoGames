@@ -17,9 +17,13 @@ export default function Card({
   removesGameToFavourites,
 }) {
   const dispatch = useDispatch();
+
+  // FUNCIONES
   function removesGameToFavourites(name) {
     dispatch(removeGameToFavourites(name));
   }
+
+  // SEARCH VG IN FAVOURITES STATE
   const favouritesGames = useSelector((state) => state.favouritesGames);
   let currentGame = favouritesGames.find((vg) => vg.name == name);
   return (

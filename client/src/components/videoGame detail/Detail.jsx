@@ -6,10 +6,12 @@ import s from "./Detail.module.css";
 import Loading from "../Loading/loading";
 
 export default function Detail(props) {
+  // LOCAL STATES/DISPATCH/GLOBAL STATE
   const dispatch = useDispatch();
   const gameDetail = useSelector((state) => state.videoGameDetail);
   const [loading, setLoading] = useState(false);
 
+  //USE EFFECT
   useEffect(async () => {
     await dispatch(getVideogameById(props.match.params.id));
     setLoading(true);

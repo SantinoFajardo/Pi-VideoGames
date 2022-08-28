@@ -9,37 +9,6 @@ export function getVideogames() {
     });
   };
 }
-// export function getVideogamesByName(name) {
-//   return async function (dispatch) {
-//     try {
-//       let call = await axios.get(
-//         `http://localhost:3001/videogames?name=${name}`
-//       );
-//       return dispatch({
-//         type: "GET_VIDEOGAME_BY_NAME",
-//         payload: call.data,
-//       });
-//     } catch (error) {
-//       console.log(`Error en  la action GET_VIDEOGAME_BY_NAME`, error);
-//     }
-//   };
-// }
-
-// export function getVideogamesByReleased(released) {
-//   return async function (dispatch) {
-//     try {
-//       let call = await axios.get(
-//         `http://localhost:3001/videogames?released=${released}`
-//       );
-//       return dispatch({
-//         type: "GET_VIDEOGAME_BY_RELEASED",
-//         payload: call.data,
-//       });
-//     } catch (error) {
-//       console.log(`Error en  la action GET_VIDEOGAME_BY_NAME`, error);
-//     }
-//   };
-// }
 
 export function getVideogamesByReleasedAndName(name, released) {
   return async function (dispatch) {

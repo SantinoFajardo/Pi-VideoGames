@@ -10,37 +10,14 @@ import s from "./searchBar.module.css";
 
 export default function SearchBar({ setCurrentPage }) {
   const dispatch = useDispatch();
-  // const [name, setName] = useState("");
-  // const [released, setReleased] = useState("");
+
+  // ESTADOS LOCALES
   const [input, setInput] = useState({
     name: "",
     released: "",
   });
 
-  // async function handleInputChange(e) {
-  //   e.preventDefault();
-  //   // setReleased(released);
-  //   // setName(e.target.value);
-  //   setInput({
-  //     ...input,
-  //     name: e.target.value,
-  //   });
-  //   await dispatch(getVideogamesByName(input.name));
-  //   setCurrentPage(1);
-  // }
-
-  // async function handleReleasedInputChange(e) {
-  //   e.preventDefault();
-  //   // setName(name);
-  //   // setReleased(e.target.value);
-  //   setInput({
-  //     ...input,
-  //     released: e.target.value,
-  //   });
-  //   await dispatch(getVideogamesByReleased(input.released));
-  //   setCurrentPage(1);
-  // }
-
+  // FUNCIONES
   async function handleInputChange(e) {
     e.preventDefault();
     setInput({
@@ -51,13 +28,13 @@ export default function SearchBar({ setCurrentPage }) {
     setCurrentPage(1);
   }
 
-  function setSearch(e) {
+  async function setSearch(e) {
     e.preventDefault();
     setInput({
       name: "",
       released: "",
     });
-    dispatch(getVideogames());
+    await dispatch(getVideogames());
     setCurrentPage(1);
   }
 
