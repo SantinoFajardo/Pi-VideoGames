@@ -65,7 +65,7 @@ export default function rootReducer(state = initialState, action) {
       state.videoGamesFilter = createdFilter;
       return {
         ...state,
-        videoGames: action.payload === "All" ? state.games : createdFilter,
+        videoGames: action.payload === "All" ? state.videoGames : createdFilter,
       };
     case "SORT_BY_NAME":
       let sortByName =
