@@ -5,6 +5,8 @@ const initialState = {
   genres: [],
   platforms: [],
   favouritesGames: [],
+  apiGames: [],
+  dbGames: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -14,6 +16,8 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         videoGames: action.payload,
         videoGamesFilter: action.payload,
+        apiGames: action.payload.filter((vg) => !vg.createInDb),
+        dbGames: action.payload.filter((vg) => vg.createInDb),
       };
     case "GET_VIDEOGAME_BY_NAME_AND_RELEASED":
       return {
@@ -55,9 +59,7 @@ export default function rootReducer(state = initialState, action) {
       };
     case "FILTER_BY_CREATED":
       const createdFilter =
-        action.payload === "API"
-          ? state.videoGamesFilter.filter((a) => !a.createInDb)
-          : state.videoGamesFilter.filter((a) => a.createInDb === true);
+        action.payload === "API" ? state.apiGames : state.dbGames;
       state.videoGamesFilter = createdFilter;
       return {
         ...state,
