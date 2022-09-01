@@ -74,9 +74,6 @@ export default function Home() {
   }
 
   function handleFilterCreated(e) {
-    if (e.target.value == "All") {
-      dispatch(getVideogames());
-    }
     dispatch(filterGamesByCreated(e.target.value));
     setCurrentPage(1);
   }

@@ -7,6 +7,7 @@ const initialState = {
   favouritesGames: [],
   apiGames: [],
   dbGames: [],
+  games: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -16,6 +17,7 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         videoGames: action.payload,
         videoGamesFilter: action.payload,
+        games: action.payload,
         apiGames: action.payload.filter((vg) => !vg.createInDb),
         dbGames: action.payload.filter((vg) => vg.createInDb),
       };
@@ -63,8 +65,7 @@ export default function rootReducer(state = initialState, action) {
       state.videoGamesFilter = createdFilter;
       return {
         ...state,
-        videoGames:
-          action.payload === "All" ? state.videoGamesFilter : createdFilter,
+        videoGames: action.payload === "All" ? state.games : createdFilter,
       };
     case "SORT_BY_NAME":
       let sortByName =
