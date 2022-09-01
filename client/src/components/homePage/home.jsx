@@ -74,6 +74,9 @@ export default function Home() {
   }
 
   function handleFilterCreated(e) {
+    if (e.target.value == "All") {
+      dispatch(getVideogames());
+    }
     dispatch(filterGamesByCreated(e.target.value));
     setCurrentPage(1);
   }
@@ -130,7 +133,7 @@ export default function Home() {
         <SearchBar currentPage={currentPage} setCurrentPage={setCurrentPage} />
       </div>
       <div className={s.div_filters_sorts}>
-        <select name="" id="" onChange={(e) => handleFilterGenre(e)}>
+        <select name="genre" id="" onChange={(e) => handleFilterGenre(e)}>
           <option value="All">ALL GENRES</option>
           {allGenres.map((el) => (
             <option value={el.name} key={el.name}>
@@ -139,7 +142,7 @@ export default function Home() {
           ))}
         </select>
         <div>
-          <select name="" id="" onChange={(e) => handleFilterCreated(e)}>
+          <select name="origin" id="" onChange={(e) => handleFilterCreated(e)}>
             <option value="All">ALL VIDEOGAMES</option>
             <option value="DB">ONLY DATA BASE GAMES</option>
             <option value="API">ONLY API GAMES</option>

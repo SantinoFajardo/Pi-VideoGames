@@ -1,5 +1,3 @@
-import { bindActionCreators } from "redux";
-
 const initialState = {
   videoGames: [],
   videoGamesFilter: [],
@@ -17,16 +15,6 @@ export default function rootReducer(state = initialState, action) {
         videoGames: action.payload,
         videoGamesFilter: action.payload,
       };
-    // case "GET_VIDEOGAME_BY_NAME":
-    //   return {
-    //     ...state,
-    //     videoGames: action.payload,
-    //   };
-    // case "GET_VIDEOGAME_BY_RELEASED":
-    //   return {
-    //     ...state,
-    //     videoGames: action.payload,
-    //   };
     case "GET_VIDEOGAME_BY_NAME_AND_RELEASED":
       return {
         ...state,
@@ -56,7 +44,11 @@ export default function rootReducer(state = initialState, action) {
       const genreFilter =
         action.payload === "All"
           ? allVideoGames
-          : allVideoGames.filter((Vg) => Vg.genres.includes(action.payload));
+          : allVideoGames.filter((Vg) =>
+              !Vg.createInDb
+                ? Vg.genres.includes(action.payload)
+                : Vg.genres.map((g) => g.name).includes(action.payload)
+            );
       return {
         ...state,
         videoGames: genreFilter,
@@ -66,6 +58,7 @@ export default function rootReducer(state = initialState, action) {
         action.payload === "API"
           ? state.videoGamesFilter.filter((a) => !a.createInDb)
           : state.videoGamesFilter.filter((a) => a.createInDb === true);
+      state.videoGamesFilter = createdFilter;
       return {
         ...state,
         videoGames:
