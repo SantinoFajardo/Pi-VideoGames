@@ -89,10 +89,11 @@ export default function Create() {
     e.preventDefault();
     if (
       input.name &&
+      input.name != " " &&
       input.description &&
       input.rating &&
       input.rating > 1 &&
-      input.rating < 5 &&
+      input.rating <= 5 &&
       input.image &&
       input.platforms.length &&
       input.genres.length

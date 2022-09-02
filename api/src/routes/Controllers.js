@@ -112,6 +112,7 @@ const postGame = async (
     throw "Faltan algunos elementos obligatorios para poder postear un video juego";
   } else {
     platforms = platforms.toString();
+    name = name.trim();
     const newGame = await Videogame.create({
       name,
       description,
